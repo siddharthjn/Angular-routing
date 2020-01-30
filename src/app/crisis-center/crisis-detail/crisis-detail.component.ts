@@ -18,17 +18,15 @@ export class CrisisDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private service: CrisisService) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.crisis$ = this.service.getCrisis(id);
-    this.crisis$.subscribe((crisis) => {
-      this.crisis = crisis;
-      console.log(crisis);
+    this.route.url.subscribe(url => {
+      const id = url[0].path;
+      this.crisis$ = this.service.getCrisis(id);
+      this.crisis$.subscribe((crisis) => {
+        this.crisis = crisis;
+        console.log(crisis);
+      });
     });
-    // this.crisis$ = this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) => {
-    //     return this.service.getCrisis(params.get('id'));
-    //   })
-    // );
+
   }
 
   gotoCrises(crisis: Crisis) {

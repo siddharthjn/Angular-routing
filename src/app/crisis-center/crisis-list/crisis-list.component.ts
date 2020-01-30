@@ -3,7 +3,7 @@ import { Crisis } from '../crisis';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +19,8 @@ export class CrisisListComponent implements OnInit {
   crises$;
   selectedId: number;
 
-  constructor(private crisisService: CrisisService, private service: CrisisService, private route: ActivatedRoute) { }
+  constructor(private crisisService: CrisisService, private service: CrisisService,
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.crises$ = this.route.paramMap.pipe(
@@ -40,4 +41,5 @@ export class CrisisListComponent implements OnInit {
         this.crises = crises;
       });
   }
+
 }

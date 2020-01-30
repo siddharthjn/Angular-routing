@@ -6,28 +6,27 @@ import { CrisisListComponent } from './crisis-list/crisis-list.component';
 import { CrisisCenterComponent } from './crisis-center.component';
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 
-// const crisisCenterRoutes: Routes = [
-//   {
-//     path: 'crisis-center',
-//     component: CrisisCenterComponent,
-//     children: [
-//       {
-//         path: '',
-//         component: CrisisListComponent,
-//         children: [
-//           {
-//             path: ':id',
-//             component: CrisisDetailComponent
-//           }
-//         ]
-//       }
-//     ]
-//   }
-// ];
-
 const crisisCenterRoutes: Routes = [
-  { path: 'crisis-center', component: CrisisListComponent },
-  { path: 'crisis-center/:id', component: CrisisDetailComponent }
+  {
+    path: 'crisis-center',
+    component: CrisisCenterComponent,
+    children: [
+      {
+        path: '',
+        component: CrisisListComponent,
+        children: [
+          {
+            path: ':id',
+            component: CrisisDetailComponent
+          },
+          {
+            path: '',
+            component: CrisisCenterHomeComponent
+          }
+        ]
+      }
+    ]
+  }
 ];
 
 @NgModule({
